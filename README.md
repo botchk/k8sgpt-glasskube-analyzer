@@ -22,7 +22,6 @@ TODO describe which version of k8sgpt operator and k8sgpt are needed
   include k8sgpt config
 TODO helm chart app version
 TODO golang app version
-TODO make file
 
 ## k8sgpt-operator
 TODO BUG report k8sgpt-operator should publish latest image or delete existing latest image

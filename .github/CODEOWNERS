@@ -1,0 +1,6 @@
+* @botchk
+
+# no codeowners to allow auto merging dependency updates
+**/go.mod
+**/go.sum
+.github/workflows/*.yaml

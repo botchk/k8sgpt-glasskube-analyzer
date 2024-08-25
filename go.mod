@@ -1,6 +1,6 @@
 module github.com/botchk/k8sgpt-glasskube-analyzer
 
-go 1.22.5
+go 1.23.0
 
 require (
 	buf.build/gen/go/k8sgpt-ai/k8sgpt/grpc/go v1.5.1-20240807134501-ea98c104104d.1

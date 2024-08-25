@@ -1,6 +1,8 @@
 name: Build Go Project
 
 on:
+  push:
+  pull_request:
   merge_group:
     types:
       - checks_requested

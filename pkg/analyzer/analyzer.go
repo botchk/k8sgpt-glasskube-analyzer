@@ -29,14 +29,16 @@ func (a *Handler) Run(context.Context, *v1.RunRequest) (*v1.RunResponse, error) 
 	response := &v1.RunResponse{}
 	for _, repo := range repoList.Items {
 		for _, condition := range repo.Status.Conditions {
-			slog.Debug("packagerepository", "name", repo.Name, "condition.type", condition.Type, "condition.reason", condition.Reason, "condition.message", condition.Message)
+			slog.Debug("packagerepository", "name", repo.Name, "condition.type", condition.Type, "condition.reason",
+				condition.Reason, "condition.message", condition.Message)
 			if condition.Status == pkgv1.ConditionFalse {
 				// TODO the result should probably include full crd types to enable better AI analysis
 				result := &v1.Result{
 					Name: "k8sgpt-glasskube-analyzer",
 					Error: []*v1.ErrorDetail{
 						{
-							Text: fmt.Sprintf("%s has condition of type %s, reason %s: %s", repo.Name, condition.Type, condition.Reason, condition.Message),
+							Text: fmt.Sprintf("%s has condition of type %s, reason %s: %s",
+								repo.Name, condition.Type, condition.Reason, condition.Message),
 						},
 					},
 					Kind: repo.Kind,

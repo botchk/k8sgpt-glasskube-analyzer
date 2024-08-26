@@ -1,0 +1,76 @@
+version: 2
+before:
+  hooks:
+    - go mod tidy
+builds:
+  - env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - windows
+      - darwin
+    ldflags:
+      - -s -w
+      - -X main.version={{.Version}}
+      - -X main.commit={{.ShortCommit}}
+      - -X main.Date={{.CommitDate}}
+
+dockers:
+  - image_templates:
+      - "docker.io/botchk/k8sgpt-glasskube-analyzer:{{.Tag}}-amd64"
+      - "docker.io/botchk/k8sgpt-glasskube-analyzer:latest-amd64"
+    use: buildx
+    build_flag_templates:
+      - "--pull"
+      - "--platform=linux/amd64"
+      - "--label=org.opencontainers.image.created={{.Date}}"
+      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+      - "--label=org.opencontainers.image.version={{.Version}}"
+      - '--label=org.opencontainers.image.title="k8sgpt glasskube analyzer"'
+      - "--label=org.opencontainers.image.licenses=Apache-2.0"
+      - "--label=org.opencontainers.image.source=https://github.com/botchk/k8sgpt-glasskube-analyzer/"
+  - image_templates:
+      - "docker.io/botchk/k8sgpt-glasskube-analyzer:{{.Tag}}-arm64"
+      - "docker.io/botchk/k8sgpt-glasskube-analyzer:latest-arm64"
+    use: buildx
+    build_flag_templates:
+      - "--pull"
+      - "--platform=linux/arm64"
+      - "--label=org.opencontainers.image.created={{.Date}}"
+      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+      - "--label=org.opencontainers.image.version={{.Version}}"
+      - '--label=org.opencontainers.image.title="k8sgpt glasskube analyzer"'
+      - "--label=org.opencontainers.image.licenses=Apache-2.0"
+      - "--label=org.opencontainers.image.source=https://github.com/botchk/k8sgpt-glasskube-analyzer/"
+    goarch: arm64
+
+docker_manifests:
+  - name_template: "docker.io/botchk/k8sgpt-glasskube-analyzer:{{.Tag}}"
+    image_templates:
+      - "docker.io/botchk/k8sgpt-glasskube-analyzer:{{.Tag}}-amd64"
+      - "docker.io/botchk/k8sgpt-glasskube-analyzer:{{.Tag}}-arm64"
+  - name_template: "docker.io/botchk/k8sgpt-glasskube-analyzer:latest"
+    image_templates:
+      - "docker.io/botchk/k8sgpt-glasskube-analyzer:latest-amd64"
+      - "docker.io/botchk/k8sgpt-glasskube-analyzer:latest-arm64"
+
+sboms:
+  - artifacts: archive
+
+archives:
+  - format: tar.gz
+    # this name template makes the OS and Arch compatible with the results of uname.
+    name_template: >-
+      {{ .ProjectName }}_
+      {{- title .Os }}_
+      {{- if eq .Arch "amd64" }}x86_64
+      {{- else if eq .Arch "386" }}i386
+      {{- else }}{{ .Arch }}{{ end }}
+      {{- if .Arm }}v{{ .Arm }}{{ end }}
+    # use zip for windows archives
+    format_overrides:
+      - goos: windows
+        format: zip
+
+checksum:
+  name_template: "checksums.txt"

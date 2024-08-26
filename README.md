@@ -23,6 +23,8 @@ TODO describe which version of k8sgpt operator and k8sgpt are needed
 TODO helm chart app version
 TODO golang app version
 TODO renovate
+TODO build gets triggered two times on PRs
+TODO when does commit lint get triggered?
 
 ## k8sgpt-operator
 TODO BUG report k8sgpt-operator should publish latest image or delete existing latest image

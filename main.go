@@ -22,7 +22,7 @@ func main() {
 	handler := slog.NewJSONHandler(os.Stderr, &slog.HandlerOptions{Level: slog.LevelDebug})
 	slog.SetDefault(slog.New(handler))
 
-	// TODO port should be configureable
+	// TODO port should be configurable
 	var port string = "8085"
 	slog.Info("startup", "port", port)
 	address := fmt.Sprintf(":%s", port)

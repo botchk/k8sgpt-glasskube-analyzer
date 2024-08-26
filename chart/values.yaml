@@ -3,7 +3,7 @@ replicaCount: 1
 image:
   repository: docker.io/botchk/k8sgpt-glasskube-analyzer
   pullPolicy: Always
-  tag: "latest"
+  tag: "" # defaults to Chart.appVersion if unspecified
 
 imagePullSecrets: []
 nameOverride: ""

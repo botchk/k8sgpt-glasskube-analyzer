@@ -6,7 +6,7 @@ require (
 	buf.build/gen/go/k8sgpt-ai/k8sgpt/grpc/go v1.5.1-20240807134501-ea98c104104d.1
 	buf.build/gen/go/k8sgpt-ai/k8sgpt/protocolbuffers/go v1.34.2-20240807134501-ea98c104104d.2
 	github.com/glasskube/glasskube v0.17.0
-	google.golang.org/grpc v1.65.0
+	google.golang.org/grpc v1.66.0
 	k8s.io/apimachinery v0.31.0
 	k8s.io/client-go v0.31.0
 )
@@ -36,8 +36,8 @@ require (
 	golang.org/x/term v0.23.0 // indirect
 	golang.org/x/text v0.17.0 // indirect
 	golang.org/x/time v0.5.0 // indirect
-	google.golang.org/genproto/googleapis/api v0.0.0-20240528184218-531527333157 // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20240528184218-531527333157 // indirect
+	google.golang.org/genproto/googleapis/api v0.0.0-20240604185151-ef581f913117 // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20240604185151-ef581f913117 // indirect
 	google.golang.org/protobuf v1.34.2 // indirect
 	gopkg.in/inf.v0 v0.9.1 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect

@@ -7,36 +7,53 @@ import (
 	"net"
 	"net/http"
 	"os"
+	"path/filepath"
 
 	rpc "buf.build/gen/go/k8sgpt-ai/k8sgpt/grpc/go/schema/v1/schemav1grpc"
 	"github.com/botchk/k8sgpt-glasskube-analyzer/pkg/analyzer"
 	"github.com/glasskube/glasskube/pkg/client"
+	"github.com/spf13/viper"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 	"k8s.io/client-go/rest"
 	"k8s.io/client-go/tools/clientcmd"
 )
 
-func main() {
-	// TODO allow setting of log level from env
-	handler := slog.NewJSONHandler(os.Stderr, &slog.HandlerOptions{Level: slog.LevelDebug})
-	slog.SetDefault(slog.New(handler))
+type Config struct {
+	Local    bool   `mapstructure:"local"`
+	Port     string `mapstructure:"port"`
+	LogLevel string `mapstructure:"log_level"`
+}
 
-	// TODO port should be configurable
-	var port string = "8085"
-	slog.Info("startup", "port", port)
-	address := fmt.Sprintf(":%s", port)
+func main() {
+	conf, err := initConfig()
+	if err != nil {
+		panic(err)
+	}
+
+	logLevel, err := parseLogLevel(conf.LogLevel)
+	if err != nil {
+		panic(err)
+	}
+
+	handler := slog.NewJSONHandler(os.Stderr, &slog.HandlerOptions{Level: logLevel})
+	slog.SetDefault(slog.New(handler))
+	slog.Info("init", "config", conf)
+
+	address := fmt.Sprintf(":%s", conf.Port)
 	lis, err := net.Listen("tcp", address)
 	if err != nil {
 		panic(err)
 	}
 
-	// TODO allow setting localMode from env
-	// TODO allow setting kubeconfig path from env
-	var localMode bool = true
 	var config *rest.Config
-	if localMode {
-		config, err = clientcmd.BuildConfigFromFlags("", "/home/daugustin/.kube/config")
+	if conf.Local {
+		kubeconfigFilePath, err := getKubeconfigFilePath()
+		if err != nil {
+			panic(err)
+		}
+		slog.Info("init", "kubeconfig", kubeconfigFilePath)
+		config, err = clientcmd.BuildConfigFromFlags("", kubeconfigFilePath)
 		if err != nil {
 			panic(err)
 		}
@@ -62,4 +79,43 @@ func main() {
 	); err != nil && !errors.Is(err, http.ErrServerClosed) {
 		return
 	}
+}
+
+func initConfig() (*Config, error) {
+	viper.SetEnvPrefix("K8SGPT")
+	viper.MustBindEnv("local")
+	viper.SetDefault("local", false)
+
+	viper.MustBindEnv("port")
+	viper.SetDefault("port", "8085")
+
+	viper.MustBindEnv("log_level")
+	viper.SetDefault("log_level", "INFO")
+
+	conf := Config{}
+	err := viper.Unmarshal(&conf)
+	if err != nil {
+		return nil, err
+	}
+
+	return &conf, nil
+}
+
+func getKubeconfigFilePath() (string, error) {
+	home, err := os.UserHomeDir()
+
+	if err != nil {
+		return "", err
+	}
+
+	return filepath.Join(home, ".kube", "config"), nil
+}
+
+func parseLogLevel(s string) (slog.Level, error) {
+	bytes := []byte(s)
+
+	var level slog.Level
+	err := level.UnmarshalText(bytes)
+
+	return level, err
 }

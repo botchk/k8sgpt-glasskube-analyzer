@@ -16,6 +16,7 @@ grpcurl --plaintext localhost:8085 schema.v1.CustomAnalyzerService/Run
 # TODO
 
 ## k8sgpt-glasskube-analyzer
+TODO BUG the release should be managed by the github actions bot
 TODO change deployment name to not include chart
 TODO readiness and liveness probe
 TODO describe which version of k8sgpt operator and k8sgpt are needed

@@ -1,0 +1,34 @@
+kubectl apply -f - << EOF
+apiVersion: core.k8sgpt.ai/v1alpha1
+kind: K8sGPT
+metadata:
+  name: k8sgpt-sample
+  namespace: k8sgpt-operator-system
+spec:
+  ai:
+    enabled: false
+    model: gpt-3.5-turbo
+    backend: openai
+    secret:
+      name: k8sgpt-sample-secret
+      key: openai-api-key
+    backOff: 
+      enabled: false
+  noCache: true
+  repository: ghcr.io/k8sgpt-ai/k8sgpt
+  version: dev-202408201353
+  customAnalyzers:
+    - name: Glasskube
+      connection:
+        url: k8sgpt-glasskube-analyzer-chart.k8sgpt-operator-system.srv.cluster.local
+        port: 8085
+EOF
+kubectl apply -f - << EOF
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: k8sgpt
+  namespace: k8sgpt-operator-system
+EOF
+#export OPENAI_TOKEN=sk-hansi
+#kubectl create secret generic k8sgpt-sample-secret --from-literal=openai-api-key=$OPENAI_TOKEN -n k8sgpt-operator-system

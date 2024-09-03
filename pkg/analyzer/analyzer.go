@@ -21,19 +21,35 @@ type Analyzer struct {
 }
 
 func (a *Handler) Run(context.Context, *v1.RunRequest) (*v1.RunResponse, error) {
-	var repoList v1alpha1.PackageRepositoryList
-	if err := a.Client.PackageRepositories().GetAll(context.TODO(), &repoList); err != nil {
+	results := []v1.Result{}
+	if err := a.analyzePackageRepositories(&results); err != nil {
+		return nil, err
+	}
+	if err := a.analyzeClusterPackages(&results); err != nil {
+		return nil, err
+	}
+	if err := a.analyzePackages(&results); err != nil {
 		return nil, err
 	}
 
+	// TODO why can there be only one result each analysis? Is it needed to register one analyzer for each resource?
 	response := &v1.RunResponse{}
+	return response, nil
+}
+
+func (a *Handler) analyzePackageRepositories(results *[]v1.Result) error {
+	var repoList v1alpha1.PackageRepositoryList
+	if err := a.Client.PackageRepositories().GetAll(context.TODO(), &repoList); err != nil {
+		return err
+	}
+
 	for _, repo := range repoList.Items {
 		for _, condition := range repo.Status.Conditions {
 			slog.Debug("packagerepository", "name", repo.Name, "condition.type", condition.Type, "condition.reason",
 				condition.Reason, "condition.message", condition.Message)
 			if condition.Status == pkgv1.ConditionFalse {
 				// TODO the result should probably include full crd types to enable better AI analysis
-				result := &v1.Result{
+				*results = append(*results, v1.Result{
 					Name: "k8sgpt-glasskube-analyzer",
 					Error: []*v1.ErrorDetail{
 						{
@@ -42,12 +58,46 @@ func (a *Handler) Run(context.Context, *v1.RunRequest) (*v1.RunResponse, error) 
 						},
 					},
 					Kind: repo.Kind,
-				}
-				// TODO why can there be only one result each analysis? Is it needed to register one analyzer for each resource?
-				response.Result = result
+				})
 			}
 		}
 	}
+	return nil
+}
 
-	return response, nil
+func (a *Handler) analyzeClusterPackages(results *[]v1.Result) error {
+	var pkgList v1alpha1.ClusterPackageList
+	if err := a.Client.ClusterPackages().GetAll(context.TODO(), &pkgList); err != nil {
+		return err
+	}
+
+	for _, pkg := range pkgList.Items {
+		for _, condition := range pkg.Status.Conditions {
+			slog.Debug("clusterpackage", "name", pkg.Name, "condition.type", condition.Type, "condition.reason",
+				condition.Reason, "condition.message", condition.Message)
+			//TODO implement
+			*results = append(*results, v1.Result{})
+		}
+	}
+
+	return nil
+}
+
+func (a *Handler) analyzePackages(results *[]v1.Result) error {
+	var pkgList v1alpha1.PackageList
+	//TODO check if supplying an empty string as namespace returns all packages over all namespaces
+	if err := a.Client.Packages("").GetAll(context.TODO(), &pkgList); err != nil {
+		return err
+	}
+
+	for _, pkg := range pkgList.Items {
+		for _, condition := range pkg.Status.Conditions {
+			slog.Debug("package", "name", pkg.Name, "condition.type", condition.Type, "condition.reason",
+				condition.Reason, "condition.message", condition.Message)
+			//TODO implement
+			*results = append(*results, v1.Result{})
+		}
+	}
+
+	return nil
 }

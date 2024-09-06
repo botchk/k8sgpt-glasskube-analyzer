@@ -3,12 +3,11 @@ name: Build Go Project
 on:
   push:
   pull_request:
-  merge_group:
-    types:
-      - checks_requested
 
 jobs:
   build:
+    # Don't run job two times on newly created PRs
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.event.pull_request.base.repo.full_name
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

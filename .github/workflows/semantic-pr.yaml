@@ -1,4 +1,4 @@
-name: "Lint PR"
+name: Lint Pull Request
 
 on:
   pull_request_target:
@@ -6,6 +6,7 @@ on:
       - opened
       - edited
       - synchronize
+      - reopened
 
 permissions:
   pull-requests: read

@@ -16,18 +16,12 @@ grpcurl --plaintext localhost:8085 schema.v1.CustomAnalyzerService/Run
 # TODO
 
 ## k8sgpt-glasskube-analyzer
-TODO BUG the release should be managed by the github actions bot
 TODO PR checks should be fulfilled before merging is allowed
 TODO create github test user to test setup
 TODO change deployment name to not include chart
 TODO readiness and liveness probe
 TODO describe which version of k8sgpt operator and k8sgpt are needed
   include k8sgpt config
-TODO helm chart app version
-TODO golang app version
-TODO renovate
 TODO build gets triggered two times on PRs
 TODO when does commit lint get triggered?
-
-## k8sgpt-operator
-TODO BUG report k8sgpt-operator should publish latest image or delete existing latest image
+TODO run pod with increased security settings

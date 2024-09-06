@@ -24,6 +24,8 @@ github.com/glasskube/glasskube v0.18.0 h1:Qm9vTWyaW6z+Q4tQmUbVWsGDR5+asXCPwezXWw
 github.com/glasskube/glasskube v0.18.0/go.mod h1:LAiJulrGJgXaHS+KbBJQ6aUadwo8EYLgvwPYA3U9Qlk=
 github.com/glasskube/glasskube v0.19.1 h1:rQdkEqmNOMUuSqBj783ZWVeMYQhwweXGp3HcGN+beEc=
 github.com/glasskube/glasskube v0.19.1/go.mod h1:kjnc613GSxrAby4TxXeky9msJNFQZh1ykrpupsP27j4=
+github.com/glasskube/glasskube v0.19.2 h1:mkjpStOyMo02uLic1Yo41R0Op/Oz1+HE1FTP+qfugTE=
+github.com/glasskube/glasskube v0.19.2/go.mod h1:kjnc613GSxrAby4TxXeky9msJNFQZh1ykrpupsP27j4=
 github.com/go-logr/logr v1.4.2 h1:6pFjapn8bFcIbiKo3XT4j/BhANplGihG6tvd+8rYgrY=
 github.com/go-logr/logr v1.4.2/go.mod h1:9T104GzyrTigFIr8wt5mBrctHMim0Nb2HLGrmQ40KvY=
 github.com/go-openapi/jsonpointer v0.20.2 h1:mQc3nmndL8ZBzStEo3JYF8wzmeWffDH4VbXz58sAx6Q=

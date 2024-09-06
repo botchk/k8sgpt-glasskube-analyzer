@@ -1,9 +1,7 @@
 name: Lint commits
 
 on:
-  merge_group:
-    types:
-      - checks_requested
+  push:
 
 jobs:
   semantic-message:

@@ -29,6 +29,7 @@ dockers:
       - '--label=org.opencontainers.image.title="k8sgpt glasskube analyzer"'
       - "--label=org.opencontainers.image.licenses=Apache-2.0"
       - "--label=org.opencontainers.image.source=https://github.com/botchk/k8sgpt-glasskube-analyzer/"
+      - '--label=org.opencontainers.image.authors="https://github.com/botchk/"'
   - image_templates:
       - "docker.io/botchk/k8sgpt-glasskube-analyzer:{{.Tag}}-arm64"
       - "docker.io/botchk/k8sgpt-glasskube-analyzer:latest-arm64"
@@ -42,6 +43,7 @@ dockers:
       - '--label=org.opencontainers.image.title="k8sgpt glasskube analyzer"'
       - "--label=org.opencontainers.image.licenses=Apache-2.0"
       - "--label=org.opencontainers.image.source=https://github.com/botchk/k8sgpt-glasskube-analyzer/"
+      - '--label=org.opencontainers.image.authors="https://github.com/botchk/"'
     goarch: arm64
 
 docker_manifests:

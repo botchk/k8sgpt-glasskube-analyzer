@@ -11,7 +11,7 @@
         "extra-files": [
           "README.md",
           {
-            "type": "generic", // force generic https://github.com/googleapis/release-please/blob/main/docs/customizing.md#updating-arbitrary-files
+            "type": "generic",
             "path": "chart/Chart.yaml"
           }
         ],

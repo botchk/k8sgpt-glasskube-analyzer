@@ -27,3 +27,4 @@ grpcurl --plaintext localhost:8085 schema.v1.CustomAnalyzerService/Run
 * include k8sgpt config
 * run pod with increased security settings
 * publish helm chart
+* release please changelog is using the wrong commit prefixes, ignores the config?

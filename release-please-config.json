@@ -10,7 +10,10 @@
         "draft": false,
         "extra-files": [
           "README.md",
-          "chart/Chart.yaml"
+          {
+            "type": "generic", // force generic https://github.com/googleapis/release-please/blob/main/docs/customizing.md#updating-arbitrary-files
+            "path": "chart/Chart.yaml"
+          }
         ],
         "changelog-sections": [
           {

@@ -41,7 +41,7 @@ jobs:
         uses: docker/login-action@9780b0c442fbb1117ed29e0efdff1e18412f7567 # v3
         with:
           registry: ghcr.io
-          username: glasskube-bot
+          username: github-actions
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Setup qemu
         uses: docker/setup-qemu-action@v3
@@ -51,17 +51,6 @@ jobs:
         uses: actions/setup-go@0a12ed9d6a96ab950c8f026ed9f722fe0da7ef32 # v5
         with:
           go-version: '1.23.x'
-      - name: Set up node
-        uses: actions/setup-node@1e60f620b9541d16bece96c5465dc8ee9832be0b # v4.0.3
-        with:
-          node-version: '20.9'
-          cache: npm
-      - name: Install dependencies
-        run: npm ci
-      - name: Set up kubectl
-        uses: azure/setup-kubectl@3e0aec4d80787158d308d7b364cb1b702e7feb7f # v4
-        with:
-          version: 'v1.29.1'
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@286f3b13b1b49da4ac219696163fb8c1c93e1200 # v6
         with:

@@ -1,5 +1,5 @@
 # k8sgpt-glasskube-analyzer
-Custom k8sgpt analyzer for Glasskube
+Custom [k8sgpt analyzer](https://github.com/k8sgpt-ai/k8sgpt) for [Glasskube](https://github.com/glasskube/glasskube)
 
 # How to run locally
 
@@ -13,15 +13,17 @@ go run main.go
 grpcurl --plaintext localhost:8085 schema.v1.CustomAnalyzerService/Run
 ```
 
-# TODO
+# Changelog
 
-## k8sgpt-glasskube-analyzer
-TODO PR checks should be fulfilled before merging is allowed
-TODO create github test user to test setup
-TODO change deployment name to not include chart
-TODO readiness and liveness probe
-TODO describe which version of k8sgpt operator and k8sgpt are needed
-  include k8sgpt config
-TODO build gets triggered two times on PRs
-TODO when does commit lint get triggered?
-TODO run pod with increased security settings
+[Changelog](CHANGELOG.md)
+
+# TODOs
+
+* PR checks should be fulfilled before merging is allowed
+* create github test user to test setup
+* change deployment name to not include chart
+* readiness and liveness probe
+* describe which version of k8sgpt operator and k8sgpt are needed
+* include k8sgpt config
+* run pod with increased security settings
+* publish helm chart

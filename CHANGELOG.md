@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.1](https://github.com/botchk/k8sgpt-glasskube-analyzer/compare/v0.2.0...v0.2.1) (2024-09-10)
+
+
+### Bug Fixes
+
+* **deps:** update module github.com/glasskube/glasskube to v0.20.1 ([#26](https://github.com/botchk/k8sgpt-glasskube-analyzer/issues/26)) ([43077fc](https://github.com/botchk/k8sgpt-glasskube-analyzer/commit/43077fcbbf8231d961d655384ff97be6ecd1dd28))
+* **deps:** update module google.golang.org/grpc to v1.66.1 ([#28](https://github.com/botchk/k8sgpt-glasskube-analyzer/issues/28)) ([ddd559f](https://github.com/botchk/k8sgpt-glasskube-analyzer/commit/ddd559f555f2b8b24cb1c647dbc66ae553595448))
+
 ## [0.2.0](https://github.com/botchk/k8sgpt-glasskube-analyzer/compare/v0.1.0...v0.2.0) (2024-09-06)
 
 

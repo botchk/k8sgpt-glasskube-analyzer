@@ -1,7 +1,11 @@
 buf.build/gen/go/k8sgpt-ai/k8sgpt/grpc/go v1.5.1-20240807134501-ea98c104104d.1 h1:W/4o/wizyw9oBry0PRZFDH9i55u8MLxmODUSZHW7krU=
 buf.build/gen/go/k8sgpt-ai/k8sgpt/grpc/go v1.5.1-20240807134501-ea98c104104d.1/go.mod h1:cJGWJGXgaTTqiPaZAuQPvkjkxQCWoAlCWte3/ZrpU8s=
+buf.build/gen/go/k8sgpt-ai/k8sgpt/grpc/go v1.5.1-20240920204244-7a91c8620515.1 h1:zrgiD9fwDXvwXw5P+lG5O+JEKvrUxsNs2xNS+c41xOA=
+buf.build/gen/go/k8sgpt-ai/k8sgpt/grpc/go v1.5.1-20240920204244-7a91c8620515.1/go.mod h1:UWLDF7rVrPUgIhYUkufxK2MQoCt8c2L2Mr2XKGepJdI=
 buf.build/gen/go/k8sgpt-ai/k8sgpt/protocolbuffers/go v1.34.2-20240807134501-ea98c104104d.2 h1:D3HPkRDfG1F4/yjNYTYkVgnh6aa1Fj14tiP5sBJ0pfA=
 buf.build/gen/go/k8sgpt-ai/k8sgpt/protocolbuffers/go v1.34.2-20240807134501-ea98c104104d.2/go.mod h1:1wq1qVxvJkTEUQsF5/XjmhQYXYhbVoLSGhKnzS3ie54=
+buf.build/gen/go/k8sgpt-ai/k8sgpt/protocolbuffers/go v1.34.2-20240920204244-7a91c8620515.2 h1:KNevBMEFHuPv6Z1Uhp9V3UNW06xnvp6hA2Jf6HPLdas=
+buf.build/gen/go/k8sgpt-ai/k8sgpt/protocolbuffers/go v1.34.2-20240920204244-7a91c8620515.2/go.mod h1:1wq1qVxvJkTEUQsF5/XjmhQYXYhbVoLSGhKnzS3ie54=
 github.com/bahlo/generic-list-go v0.2.0 h1:5sz/EEAK+ls5wF+NeqDpk5+iNdMDXrh3z3nPnH1Wvgk=
 github.com/bahlo/generic-list-go v0.2.0/go.mod h1:2KvAjgMlE5NNynlg/5iLrrCCZ2+5xWbdbCW3pNTGyYg=
 github.com/buger/jsonparser v1.1.1 h1:2PnMjfWD7wBILjqQbt530v576A/cAbQvEW9gGIpYMUs=
